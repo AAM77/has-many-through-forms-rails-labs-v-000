@@ -47,6 +47,6 @@
 
 <%= form_for @post do |f| %>
   <%= f.fields_for :comments, @post.comments.build |comments_fields| %>
-    <%= comments_fields :content %>
+    <%= comments_fields.text_area :content %>
   <% end %>
 <% end %>
