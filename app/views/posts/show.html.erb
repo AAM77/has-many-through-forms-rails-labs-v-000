@@ -49,21 +49,20 @@
 <!-------------------->
 <h4>Add a New Comment</h4>
 
-<%= form_for @post do |f| %>
-  <%= fields_for :comment, @post.comments.build do |comment_fields| %>
-    <%= comment_fields.text_area :content %>
+<%= form_for @post.comments.build do |f| %>
+  <%= f.hidden_field :post_id %>
+  <%= f.text_area :content %>
   
-    <br>
+  <br>
   
-    <%= comment_fields.collection_select :user_id, User.all, :id, :username, include_blank: "Choose an Existing User" %>
+  <%= f.collection_select :user_id, User.all, :id, :username, include_blank: "Choose an Existing User" %>
   
-    <br>
+  <br>
   
-    <%= comment_fields.fields_for :user, @post.comments.last.build_user do |user_fields| %>
-      <%= user_fields.label "Username: " %>
-      <%= user_fields.text_field :username %>
-    <% end %>
+  <%= f.fields_for :user, @post.comments.last.build_user do |user_fields| %>
+    <%= user_fields.label "Username: " %>
+    <%= user_fields.text_field :username %>
   <% end %>
   
-<%= f.submit "Create Comment" %>
+<%= f.submit %>
 <% end %>
