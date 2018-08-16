@@ -55,6 +55,6 @@
     
     <br>
     
-    <%= comments_fields.fields_for :user, 
+    <%= comments_fields.fields_for :user, @post.comments.last.build
   <% end %>
 <% end %>
