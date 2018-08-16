@@ -46,7 +46,7 @@
 <h4>Add a New Comment</h4>
 
 <%= form_for @post.comments.build do |f| %>
-    <%= f.hidden_field :id %>
+    <%= f.hidden_field :post_id %>
     <%= comments_fields.text_area :content %>
     
     <br>
