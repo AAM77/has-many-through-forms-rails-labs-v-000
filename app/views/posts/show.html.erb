@@ -46,23 +46,6 @@
 <h4>Add a New Comment</h4>
 
 <%= form_for @post do |f| %>
-  <%= f.fields_for :
-<% end %>
-
-<%= form_for @post.comments.build do |f| %>
-  <%= f.hidden_field :post_id %>
-  <%= f.text_area :content %><br>
-  
-  <br>
-  <%= f.collection_select :user_id, User.all, :id, :username, include_blank: "Choose a User" %>
-<br>
-  Create A User to Write As:
-  <%= f.fields_for :user, @post.comments.last.build_user do |user_fields|%>
- <br>
-    Username:
-    <%= user_fields.text_field :username %>
-    Email:
-    <%= user_fields.text_field :email %>
+  <%= f.fields_for :comments, @post.comments.build |comments_fields| %>
   <% end %>
-   <%= f.submit %>
 <% end %>
