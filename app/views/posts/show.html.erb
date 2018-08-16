@@ -56,6 +56,7 @@
   <br>
   
   <%= f.fields_for :user, @post.comments.last.build_user do |user_fields| %>
+    <%= user_fields.label "Username: " %>
     <%= user_fields.text_field :username %>
   <% end %>
   
