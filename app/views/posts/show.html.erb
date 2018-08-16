@@ -1,1 +1,55 @@
+<h1><%= @post.title %></h1>
 
+<p><%= @post.content %></p>
+
+<br>
+<br>
+
+<!------------------------------------------->
+<!--List of Categories this Post Belongs to-->
+<!------------------------------------------->
+<h3>Categories this Post Belongs To</h3>
+
+<ul>
+  <% @post.categories.each do |category| %>
+    <li><%= category.name %></li>
+  <% end %>
+</ul>
+
+<br>
+<br>
+
+<!-------------------------------------------->
+<!--List of Users who Commented on this Post-->
+<!-------------------------------------------->
+<h4>Users who commented on this post:</h4>
+
+<ul>
+  <% @post.users.uniq.each do |user| %>
+    <li><%= link_to user.username, user_path(user) %>
+    </li>
+  <% end %>
+</ul>
+
+<br>
+<br>
+
+<!---------------------------------->
+<!--List of Comments for this Post-->
+<!---------------------------------->
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li><%= comment.content %></li>
+  <% end %>
+</ul>
+
+<h4>Add a New Comment</h4>
+
+  <%= f.fields_for :comments, @post.comments.build do |comments_fields| %>
+    <%= f.label "Add a Comment: " %><br>
+    <%= comments_fields.text_area :content %><br>
+    <br>
+  
+    <%= f.submit "Add Comment" %>
+  <% end %>
+<% end %>
