@@ -51,11 +51,11 @@
 
 <%= form_for @post do |f| %>
   <%= fields_for :comment, @post.comments.build do |comment_fields| %>
-    <%= comment_field.text_area :content %>
+    <%= comment_fields.text_area :content %>
   
     <br>
   
-    <%= comment_field.collection_select :user_id, User.all, :id, :username, include_blank: "Choose an Existing User" %>
+    <%= comment_fields.collection_select :user_id, User.all, :id, :username, include_blank: "Choose an Existing User" %>
   
   <br>
   
